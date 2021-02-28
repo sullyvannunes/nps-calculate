@@ -7,7 +7,13 @@ describe('Survey', () => {
   beforeAll(async () => {
     const connection = await createConnection();
     await connection.runMigrations();
-  })
+  });
+
+  afterAll(async () => {
+    const connection = await createConnection();
+    await connection.dropDatabase();
+    await connection.close();
+  });
 
   it('creates a new survey', async () => {
     const response = await request(app)
