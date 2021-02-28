@@ -10,12 +10,12 @@ class SurveysController {
     const surveyRepository = getCustomRepository(SurveysRepository);
 
     const survey = surveyRepository.create({ title, description });
-    surveyRepository.save(survey);
+    await surveyRepository.save(survey);
 
     response.status(201).json(survey);
   }
 
-  async show(request: Request, response: Response) {
+  async index(request: Request, response: Response) {
     const surveyRepository = getCustomRepository(SurveysRepository);
 
     const surveys: Survey[] = await surveyRepository.find({});

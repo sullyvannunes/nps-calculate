@@ -8,10 +8,11 @@ class UsersController {
     const { name, email } = request.body;
     const userRepository = getCustomRepository(UsersRepository);
 
-    console.log({ name, email });
     const user = userRepository.create({ name, email });
-    
-    return response.json(await userRepository.save(user));
+
+    return response
+      .status(201)
+      .json(await userRepository.save(user));
   }
 }
 
